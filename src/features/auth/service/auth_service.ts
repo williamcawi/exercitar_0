@@ -1,6 +1,7 @@
-import Parse from "parse";
+import Parse from "parse/node";
 
 export class AuthService {
+  // LOGIN
   async login({
     usernameOrEmail,
     password,
@@ -35,5 +36,24 @@ export class AuthService {
 
     const loggedInUser = await Parse.User.logIn(user.get("username"), password);
     return loggedInUser;
+  }
+
+  // SIGNUP
+  async signUp({
+    username,
+    email,
+    password,
+  }: {
+    username: string;
+    email: string;
+    password: string;
+  }) {
+    const user = new Parse.User();
+
+    user.set("username", username);
+    user.set("email", email);
+    user.set("password", password);
+
+    await user.signUp();
   }
 }

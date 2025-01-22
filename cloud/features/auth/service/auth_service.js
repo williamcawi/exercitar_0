@@ -4,28 +4,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
-const parse_1 = __importDefault(require("parse"));
+const node_1 = __importDefault(require("parse/node"));
 class AuthService {
     async login({ usernameOrEmail, password, }) {
         const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(usernameOrEmail);
         let user;
         if (isEmail) {
-            const query = new parse_1.default.Query(parse_1.default.User);
+            const query = new node_1.default.Query(node_1.default.User);
             query.equalTo("email", usernameOrEmail);
             user = await query.first({ useMasterKey: true });
             if (!user) {
-                throw new parse_1.default.Error(parse_1.default.Error.EMAIL_NOT_FOUND, "User not found with this email");
+                throw new node_1.default.Error(node_1.default.Error.EMAIL_NOT_FOUND, "User not found with this email");
             }
         }
         else {
-            const query = new parse_1.default.Query(parse_1.default.User);
+            const query = new node_1.default.Query(node_1.default.User);
             query.equalTo("username", usernameOrEmail);
             user = await query.first({ useMasterKey: true });
             if (!user) {
-                throw new parse_1.default.Error(parse_1.default.Error.USERNAME_MISSING, "User not found with this username");
+                throw new node_1.default.Error(node_1.default.Error.USERNAME_MISSING, "User not found with this username");
             }
         }
-        const loggedInUser = await parse_1.default.User.logIn(user.get("username"), password);
+        const loggedInUser = await node_1.default.User.logIn(user.get("username"), password);
         return loggedInUser;
     }
 }

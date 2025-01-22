@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthRepository = void 0;
-const parse_1 = __importDefault(require("parse"));
+const node_1 = __importDefault(require("parse/node"));
 class AuthRepository {
     constructor(authService) {
         this.authService = authService;
@@ -21,10 +21,10 @@ class AuthRepository {
             };
         }
         catch (error) {
-            const message = error instanceof Error || error instanceof parse_1.default.Error
+            const message = error instanceof Error || error instanceof node_1.default.Error
                 ? error.message
                 : "Unknown error server";
-            throw new parse_1.default.Error(parse_1.default.Error.INTERNAL_SERVER_ERROR, message);
+            throw new node_1.default.Error(node_1.default.Error.INTERNAL_SERVER_ERROR, message);
         }
     }
 }
