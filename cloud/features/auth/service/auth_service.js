@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const node_1 = __importDefault(require("parse/node"));
 class AuthService {
+    // LOGIN
     async login({ usernameOrEmail, password, }) {
         const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(usernameOrEmail);
         let user;
@@ -27,6 +28,14 @@ class AuthService {
         }
         const loggedInUser = await node_1.default.User.logIn(user.get("username"), password);
         return loggedInUser;
+    }
+    // SIGNUP
+    async signUp({ username, email, password, }) {
+        const user = new node_1.default.User({ useMasterKey: true });
+        user.set("username", username);
+        user.set("email", email);
+        user.set("password", password);
+        await user.signUp(null, { useMasterKey: true });
     }
 }
 exports.AuthService = AuthService;

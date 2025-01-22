@@ -48,12 +48,11 @@ export class AuthService {
     email: string;
     password: string;
   }) {
-    const user = new Parse.User();
-
+    const user: Parse.User = new Parse.User({ useMasterKey: true });
     user.set("username", username);
     user.set("email", email);
     user.set("password", password);
 
-    await user.signUp();
+    await user.signUp(null, { useMasterKey: true });
   }
 }
