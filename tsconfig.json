@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES2017", // Compatível com o ambiente da Back4App
+    "module": "CommonJS", // Node.js usa CommonJS
+    "rootDir": "src", // Código fonte em TypeScript
+    "outDir": "cloud", // JavaScript gerado será colocado na pasta cloud
+    "strict": true, // Habilita verificações mais rigorosas
+    "esModuleInterop": true // Suporte a módulos ES6
+  },
+  "exclude": ["node_modules", "cloud"]
+}

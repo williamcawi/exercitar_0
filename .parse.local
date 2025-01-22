@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "_default": {
+      "link": "exercitar"
+    },
+    "exercitar": {
+      "applicationId": "VDOVLlsNE7v6Y6fWDuew052VtTojWDo12lw2aSTE"
+    }
+  }
+}
