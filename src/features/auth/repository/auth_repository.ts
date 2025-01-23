@@ -57,4 +57,19 @@ export class AuthRepository {
       throw new Parse.Error(Parse.Error.INTERNAL_SERVER_ERROR, message);
     }
   }
+
+  async logOut({ sessionToken }: { sessionToken: string }) {
+    try {
+      await this.authService.logOut({ sessionToken });
+      return {
+        message: "Success to log Out user",
+      };
+    } catch (error) {
+      const message: string =
+        error instanceof Error || error instanceof Parse.Error
+          ? error.message
+          : "an unknown error server";
+      throw new Parse.Error(Parse.Error.INTERNAL_SERVER_ERROR, message);
+    }
+  }
 }

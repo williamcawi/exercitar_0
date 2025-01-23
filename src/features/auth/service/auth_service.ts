@@ -55,4 +55,11 @@ export class AuthService {
 
     await user.signUp(null, { useMasterKey: true });
   }
+
+  async logOut({ sessionToken }: { sessionToken: string }) {
+    const query = new Parse.Query("_Session");
+    query.equalTo("sessionToken", sessionToken);
+    const session = await query.first({ useMasterKey: true });
+    session?.destroy({ useMasterKey: true });
+  }
 }

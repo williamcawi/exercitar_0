@@ -47,5 +47,19 @@ class AuthRepository {
             throw new node_1.default.Error(node_1.default.Error.INTERNAL_SERVER_ERROR, message);
         }
     }
+    async logOut({ sessionToken }) {
+        try {
+            await this.authService.logOut({ sessionToken });
+            return {
+                message: "Success to log Out user",
+            };
+        }
+        catch (error) {
+            const message = error instanceof Error || error instanceof node_1.default.Error
+                ? error.message
+                : "an unknown error server";
+            throw new node_1.default.Error(node_1.default.Error.INTERNAL_SERVER_ERROR, message);
+        }
+    }
 }
 exports.AuthRepository = AuthRepository;

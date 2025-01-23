@@ -22,3 +22,7 @@ node_1.default.Cloud.define("signUp", async (request) => {
         password: password,
     });
 });
+node_1.default.Cloud.define("logOut", async (request) => {
+    const { sessionToken } = request.params;
+    return await authRepository.logOut({ sessionToken: sessionToken });
+});

@@ -22,3 +22,9 @@ Parse.Cloud.define("signUp", async (request) => {
     password: password,
   });
 });
+
+Parse.Cloud.define("logOut", async (request) => {
+  const { sessionToken } = request.params;
+
+  return await authRepository.logOut({ sessionToken: sessionToken });
+});

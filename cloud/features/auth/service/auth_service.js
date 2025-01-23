@@ -37,5 +37,11 @@ class AuthService {
         user.set("password", password);
         await user.signUp(null, { useMasterKey: true });
     }
+    async logOut({ sessionToken }) {
+        const query = new node_1.default.Query("_Session");
+        query.equalTo("sessionToken", sessionToken);
+        const session = await query.first({ useMasterKey: true });
+        session === null || session === void 0 ? void 0 : session.destroy({ useMasterKey: true });
+    }
 }
 exports.AuthService = AuthService;
